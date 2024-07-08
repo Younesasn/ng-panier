@@ -1,4 +1,4 @@
-const fruits = [
+export const fruits = [
   {
     image:
       'https://media.istockphoto.com/id/1452520286/fr/vectoriel/vecteur-de-mangue-mangue-sur-fond-blanc-symbole-conception-du-logo-dessert-tha%C3%AFlandais.jpg?s=612x612&w=0&k=20&c=j5pqS2s_MMewRonU24wf-Hwb8TFFEKJQmyMwmVllZ4Q=',
