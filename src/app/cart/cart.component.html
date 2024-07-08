@@ -44,8 +44,8 @@
             <tr>
               <th class="border-b border-gray-300 px-4 py-2">Nom</th>
               <th class="border-b border-gray-300 px-4 py-2">Quantité</th>
-              <th class="border-b border-gray-300 px-4 py-2">Prix</th>
-              <th class="border-b border-gray-300 px-4 py-2">Total</th>
+              <th class="border-b border-gray-300 px-4 py-2">Prix HT</th>
+              <th class="border-b border-gray-300 px-4 py-2">Total TTC</th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +54,7 @@
               <td class="border-b border-gray-300 px-4 py-2 text-center">{{ fruit.quantite }}</td>
               <td class="border-b border-gray-300 px-4 py-2">{{ fruit.prixHT }} €</td>
               <td class="border-b border-gray-300 px-4 py-2 text-center">
-                {{ fruit.quantite * fruit.prixHT }} €
+                {{ somme(fruit) | currency:'EUR' }}
               </td>
             </tr>
           </tbody>
@@ -63,8 +63,8 @@
               <td class="border-b border-gray-300 px-4 py-2">Total</td>
               <td class="border-b border-gray-300 px-4 py-2"></td>
               <td class="border-b border-gray-300 px-4 py-2"></td>
-              <td class="border-b border-gray-300 px-4 py-2">
-                total prix
+              <td class="border-b border-gray-300 px-4 py-2 text-center">
+                {{ total() | currency:'EUR' }}
               </td>
             </tr>
           </tfoot>

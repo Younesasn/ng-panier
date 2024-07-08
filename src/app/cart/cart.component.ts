@@ -9,25 +9,45 @@ import { fruits } from '../shared/fruits.mock';
   imports: [CommonModule],
   templateUrl: './cart.component.html',
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
   fruits: Fruit[] = fruits;
   cartFruits: Fruit[] = [];
-
-  ngOnInit(): void {
-    console.log(fruits);
-  }
 
   plus(fruit: Fruit) {
     fruit.quantite++;
   }
 
   moins(fruit: Fruit) {
-    if(fruit.quantite > 0) {
+    if (fruit.quantite > 0) {
       fruit.quantite--;
     }
   }
 
   push(fruit: Fruit) {
-    this.cartFruits.push(fruit);
+    if (fruit.quantite > 0) {
+      if (this.cartFruits.find((f) => f.nom === fruit.nom)) {
+        this.cartFruits = this.cartFruits.map((f) => {
+          if (f.nom === fruit.nom) {
+            f.quantite++;
+          }
+          return f;
+        });
+      } else {
+        this.cartFruits.push(fruit);
+      }
+    }
+  }
+
+  somme(fruit: Fruit) {
+    return fruit.quantite * fruit.prixHT * 1.2;
+  }
+
+  total() {
+    return (
+      this.cartFruits.reduce(
+        (acc, fruit) => acc + fruit.quantite * fruit.prixHT,
+        0
+      ) * 1.2
+    );
   }
 }
