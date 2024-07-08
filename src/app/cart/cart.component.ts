@@ -1,7 +1,7 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Fruit } from '../shared/entities';
 import { CommonModule } from '@angular/common';
-import { fruits } from '../shared/fruits.mock';
+import { FruitsService } from '../fruits.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +10,8 @@ import { fruits } from '../shared/fruits.mock';
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
-  fruits: Fruit[] = fruits;
+  fruitsService = inject(FruitsService);
+  fruits: Fruit[] = this.fruitsService.getFruits();
   cartFruits: Fruit[] = [];
 
   plus(fruit: Fruit) {
@@ -36,6 +37,10 @@ export class CartComponent {
         this.cartFruits.push(fruit);
       }
     }
+  }
+
+  remove(fruit: Fruit) {
+    this.cartFruits = this.cartFruits.filter((f) => f.nom !== fruit.nom);
   }
 
   somme(fruit: Fruit) {

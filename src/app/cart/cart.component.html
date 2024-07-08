@@ -46,6 +46,7 @@
               <th class="border-b border-gray-300 px-4 py-2">Quantité</th>
               <th class="border-b border-gray-300 px-4 py-2">Prix HT</th>
               <th class="border-b border-gray-300 px-4 py-2">Total TTC</th>
+              <th class="border-b border-gray-300 px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +56,14 @@
               <td class="border-b border-gray-300 px-4 py-2">{{ fruit.prixHT }} €</td>
               <td class="border-b border-gray-300 px-4 py-2 text-center">
                 {{ somme(fruit) | currency:'EUR' }}
+              </td>
+              <td class="border-b border-gray-300 px-4 py-2">
+                <p
+                  (click)="remove(fruit)"
+                  class="cursor-pointer text-red-600 text-center"
+                >
+                  X
+                </p>
               </td>
             </tr>
           </tbody>
