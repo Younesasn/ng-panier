@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Fruit } from '../shared/entities';
 import { CommonModule } from '@angular/common';
 import { fruits } from '../shared/fruits.mock';
@@ -11,20 +11,23 @@ import { fruits } from '../shared/fruits.mock';
 })
 export class CartComponent implements OnInit {
   fruits: Fruit[] = fruits;
+  cartFruits: Fruit[] = [];
 
   ngOnInit(): void {
     console.log(fruits);
   }
 
-  // plus() {
-  //   if (this.quantity() < 5) {
-  //     this.quantity.set(this.quantity() + 1);
-  //   }
-  // }
+  plus(fruit: Fruit) {
+    fruit.quantite++;
+  }
 
-  // moins() {
-  //   if (this.quantity() > 1) {
-  //     this.quantity.set(this.quantity() - 1);
-  //   }
-  // }
+  moins(fruit: Fruit) {
+    if(fruit.quantite > 0) {
+      fruit.quantite--;
+    }
+  }
+
+  push(fruit: Fruit) {
+    this.cartFruits.push(fruit);
+  }
 }

@@ -2,24 +2,74 @@
   <div class="flex">
     <div class="flex-[2] grid grid-cols-4 grid-rows-2 gap-5">
       <div
-        class="flex w-[230px] h-[300px] border-2 border-gray-300 rounded-xl justify-center items-center px-3"
+        class="flex w-[250px] h-[350px] border-2 border-gray-300 rounded-xl justify-center items-center px-3"
         *ngFor="let fruit of fruits"
       >
         <div>
-          <img [src]="fruit.image" alt="" class="size-40"/>
+          <img [src]="fruit.image" alt="" class="size-40" />
           <div class="my-3">
             <p>{{ fruit.nom }}</p>
           </div>
           <div>
             <p>{{ fruit.prixHT }} €</p>
           </div>
-          <div class=""></div>
+          <div class="flex space-x-5 justify-center my-4">
+            <p
+              (click)="moins(fruit)"
+              class="cursor-pointer px-2 bg-red-600 rounded-full"
+            >
+              -
+            </p>
+            <p>{{ fruit.quantite }}</p>
+            <p
+              (click)="plus(fruit)"
+              class="cursor-pointer px-2 bg-lime-500 rounded-full"
+            >
+              +
+            </p>
+          </div>
           <div class="text-center">
-            <button type="button" class="bg-blue-500 px-6 rounded-md">Ajouter</button>
+            <p class="bg-blue-500 px-6 rounded-md cursor-pointer" (click)="push(fruit)">
+              Ajouter
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex-[1]">efoj</div>
+    <div class="flex flex-[1] justify-center">
+      <div class="space-y-3">
+        <h2 class="text-center mt-2">Panier</h2>
+        <table class="table-auto border-collapse border border-gray-300 rounded-xl">
+          <thead>
+            <tr>
+              <th class="border-b border-gray-300 px-4 py-2">Nom</th>
+              <th class="border-b border-gray-300 px-4 py-2">Quantité</th>
+              <th class="border-b border-gray-300 px-4 py-2">Prix</th>
+              <th class="border-b border-gray-300 px-4 py-2">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fruit of cartFruits">
+              <td class="border-b border-gray-300 px-4 py-2">{{ fruit.nom }}</td>
+              <td class="border-b border-gray-300 px-4 py-2 text-center">{{ fruit.quantite }}</td>
+              <td class="border-b border-gray-300 px-4 py-2">{{ fruit.prixHT }} €</td>
+              <td class="border-b border-gray-300 px-4 py-2 text-center">
+                {{ fruit.quantite * fruit.prixHT }} €
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="border-b border-gray-300 px-4 py-2">Total</td>
+              <td class="border-b border-gray-300 px-4 py-2"></td>
+              <td class="border-b border-gray-300 px-4 py-2"></td>
+              <td class="border-b border-gray-300 px-4 py-2">
+                total prix
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
